@@ -57,7 +57,7 @@ class ShowsDataFetcherTest {
 
     @BeforeEach
     fun before() {
-        `when`(showsService.shows()).thenAnswer { listOf(Show(id = 1, title = "mock title", releaseYear = 2020)) }
+        `when`(showsService.shows()).thenAnswer { listOf(Show(id = 1, title = "mock title", releaseYear = 2020, isAvailable = true)) }
         `when`(reviewsService.reviewsForShows(listOf(1))).thenAnswer {
             mapOf(
                 Pair(

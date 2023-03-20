@@ -15,6 +15,7 @@ type Show {
     id: Int!
     title(format: TitleFormat): String!
     releaseYear: Int
+    isAvailable: Boolean!
     reviews: [Review]
     artwork: [Image]
 }
