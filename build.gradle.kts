@@ -63,6 +63,10 @@ dependencies {
 tasks.withType<com.netflix.graphql.dgs.codegen.gradle.GenerateJavaTask> {
     generateClient = true
     packageName = "com.example.demo.generated"
+    generateKotlinNullableClasses = true
+    typeMapping = mutableMapOf(
+        "DateTime" to "java.time.OffsetDateTime"
+    )
 }
 
 

@@ -46,6 +46,6 @@ class ArtworkUploadDataFetcher {
         return Files.list(uploadDir)
             .filter { it.fileName.toString().startsWith("show-$showId-") }
             .map { it.fileName.toString() }
-            .map { Image(url = it) }.toList()
+            .map { Image(url = { it }) }.toList()
     }
 }

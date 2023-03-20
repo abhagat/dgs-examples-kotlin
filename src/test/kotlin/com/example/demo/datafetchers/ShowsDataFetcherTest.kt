@@ -57,13 +57,13 @@ class ShowsDataFetcherTest {
 
     @BeforeEach
     fun before() {
-        `when`(showsService.shows()).thenAnswer { listOf(Show(id = 1, title = "mock title", releaseYear = 2020, isAvailable = true)) }
+        `when`(showsService.shows()).thenAnswer { listOf(Show(id = { 1 }, title = { "mock title" }, releaseYear = { 2020 }, isAvailable = { true })) }
         `when`(reviewsService.reviewsForShows(listOf(1))).thenAnswer {
             mapOf(
                 Pair(
                     1, listOf(
-                        Review("DGS User", 5, OffsetDateTime.now()),
-                        Review("DGS User 2", 3, OffsetDateTime.now()),
+                        Review(username = { "DGS User" }, starScore = {5}, submittedDate = { OffsetDateTime.now() }),
+                        Review(username = { "DGS User 2" }, starScore = {3}, submittedDate = { OffsetDateTime.now() }),
                     )
                 )
             )

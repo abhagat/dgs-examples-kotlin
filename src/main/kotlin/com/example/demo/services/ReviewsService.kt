@@ -61,9 +61,9 @@ class DefaultReviewsService(private val showsService: ShowsService): ReviewsServ
                 val date =
                     faker.date().past(300, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
                 Review(
-                    username = faker.name().username(),
-                    starScore = faker.number().numberBetween(0, 6),
-                    submittedDate = OffsetDateTime.of(date, ZoneOffset.UTC)
+                    username = { faker.name().username() },
+                    starScore = { faker.number().numberBetween(0, 6) },
+                    submittedDate = { OffsetDateTime.of(date, ZoneOffset.UTC) }
                 )
             }.toList().toMutableList()
 
@@ -101,9 +101,9 @@ class DefaultReviewsService(private val showsService: ShowsService): ReviewsServ
     override fun saveReview(reviewInput: SubmittedReview) {
         val reviewsForMovie = reviews.getOrPut(reviewInput.showId, { mutableListOf() })
         val review = Review(
-            username = reviewInput.username,
-            starScore = reviewInput.starScore,
-            submittedDate = OffsetDateTime.now()
+            username = { reviewInput.username },
+            starScore = { reviewInput.starScore },
+            submittedDate = { OffsetDateTime.now() }
         )
         reviewsForMovie.add(review)
         reviewsStream.next(review)
